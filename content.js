@@ -1,9 +1,3 @@
-/*
-Cross-browser extension: "LNM Auto Login"
-Auto-fills MIS, Moodle, and Network login forms; provides quick-launch toolbar.
-*/
-
-// === content.js ===
 (function() {
   const MIS_URL     = "https://erp.lnmiit.ac.in/mis";
   const MOODLE_URL  = "https://moodle.lnmiit.ac.in/moodle/login/index.php";
@@ -22,15 +16,15 @@ Auto-fills MIS, Moodle, and Network login forms; provides quick-launch toolbar.
 
     if (!userType) return;
 
-    // Handle user type selection only once
+
     if (!sessionStorage.getItem('misStudentSelected')) {
       userType.value = '2';
       dispatch(userType);
       sessionStorage.setItem('misStudentSelected', 'true');
-      return; // wait for the postback to happen
+      return; 
     }
 
-    // If the fields are present, fill them
+
     if (usernameField && passwordField && creds.misUsername && creds.misPassword) {
       if (usernameField.value !== creds.misUsername) {
         usernameField.value = creds.misUsername;
@@ -56,7 +50,7 @@ Auto-fills MIS, Moodle, and Network login forms; provides quick-launch toolbar.
         return;
       }
 
-      // —— Moodle login ——
+
       if (url.startsWith(MOODLE_URL)) {
         const u = document.querySelector("input[name='username']");
         const p = document.querySelector("input[name='password']");
@@ -69,7 +63,7 @@ Auto-fills MIS, Moodle, and Network login forms; provides quick-launch toolbar.
         return;
       }
 
-      // —— Network login ——
+
       if (url.startsWith(NETWORK_URL)) {
         const u = document.querySelector("input[name='username']");
         const p = document.querySelector("input[name='password']");
@@ -83,7 +77,7 @@ Auto-fills MIS, Moodle, and Network login forms; provides quick-launch toolbar.
     });
   }
 
-  // Retry every 500ms up to 15s
+
   const intervalID = setInterval(tryFill, 500);
   setTimeout(() => clearInterval(intervalID), 15000);
 })();

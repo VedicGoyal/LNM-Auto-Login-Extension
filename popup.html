@@ -5,7 +5,7 @@
   <title>LNM Auto Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    /* Reset & base */
+
     *, *::before, *::after {
       box-sizing: border-box;
     }
@@ -28,7 +28,7 @@
       to {opacity: 1; transform: translateY(0);}
     }
 
-    /* Navbar */
+
     .navbar {
       display: flex;
       background: linear-gradient(90deg, #0d47a1, #1976d2);
@@ -60,7 +60,7 @@
       outline-style: solid;
     }
 
-    /* Container */
+
     .container {
       flex-grow: 1;
       padding: 28px 30px 30px;
@@ -76,7 +76,7 @@
       padding-bottom: 10px;
     }
 
-    /* Credential groups */
+
     .group {
       margin-bottom: 28px;
       padding-bottom: 14px;
@@ -99,7 +99,7 @@
       margin-bottom: 16px;
     }
 
-    /* Input icon */
+
     .input-wrapper svg {
       position: absolute;
       left: 12px;
@@ -135,7 +135,7 @@
       fill: #ffab00;
     }
 
-    /* Save button */
+
     button#save {
       margin-top: 14px;
       width: 100%;
@@ -169,7 +169,7 @@
       transform: translateY(1px);
     }
 
-    /* Save icon */
+ 
     #save svg {
       width: 22px;
       height: 22px;
@@ -177,7 +177,7 @@
       transition: transform 0.3s ease;
     }
 
-    /* Status */
+
     #status {
       margin-top: 18px;
       text-align: center;
@@ -212,7 +212,7 @@
       100% { transform: scale(1); }
     }
 
-    /* Scrollbar for container */
+
     .container::-webkit-scrollbar {
       width: 8px;
     }
@@ -239,7 +239,7 @@
       <label for="misUsername">MIS Username</label>
       <div class="input-wrapper">
         <input id="misUsername" type="text" placeholder="Enter MIS username" autocomplete="username" />
-        <!-- user icon -->
+
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
         </svg>
@@ -247,7 +247,7 @@
       <label for="misPassword">MIS Password</label>
       <div class="input-wrapper">
         <input id="misPassword" type="password" placeholder="Enter MIS password" autocomplete="current-password" />
-        <!-- lock icon -->
+
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M12 17a2 2 0 0 0 2-2v-2a2 2 0 0 0-4 0v2a2 2 0 0 0 2 2zm6-6v-3a6 6 0 0 0-12 0v3H4v11h16V11h-2zm-6-3a4 4 0 0 1 4 4v3H8v-3a4 4 0 0 1 4-4z"/>
         </svg>
@@ -290,14 +290,14 @@
 
     <button id="save" aria-label="Save all credentials">
       Save All
-      <!-- save icon -->
+
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M17 3H7a2 2 0 0 0-2 2v14l7-3 7 3V5a2 2 0 0 0-2-2z"/>
       </svg>
     </button>
 
     <div id="status" role="alert" aria-live="polite" aria-atomic="true" aria-relevant="additions">
-      <!-- checkmark icon -->
+
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M9 16.17l-3.88-3.88-1.41 1.41L9 19 20.3 7.7l-1.41-1.41z"/>
       </svg>

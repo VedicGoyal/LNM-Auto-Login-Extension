@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LNM Auto Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: #f4f7fa;
+      color: #2e3a59;
+      width: 360px;
+      height: 440px;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(8px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      background: linear-gradient(90deg, #0d47a1, #1976d2);
+      box-shadow: 0 3px 12px rgba(25, 118, 210, 0.35);
+    }
+    .navbar button {
+      flex: 1;
+      border: none;
+      padding: 14px 0;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      background: transparent;
+      transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
+      letter-spacing: 0.06em;
+      border-bottom: 3px solid transparent;
+      position: relative;
+    }
+    .navbar button:hover,
+    .navbar button:focus {
+      background: rgba(255 255 255 / 0.18);
+      outline: none;
+      border-bottom-color: #ffab00;
+    }
+    .navbar button:focus-visible {
+      outline-offset: 2px;
+      outline-color: #ffab00;
+      outline-style: solid;
+    }
+
+    /* Container */
+    .container {
+      flex-grow: 1;
+      padding: 28px 30px 30px;
+      overflow-y: auto;
+    }
+    h3 {
+      margin: 0 0 20px 0;
+      font-weight: 700;
+      font-size: 22px;
+      color: #0d47a1;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #1976d2;
+      padding-bottom: 10px;
+    }
+
+    /* Credential groups */
+    .group {
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 1.4px solid #d9e3f0;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #40557a;
+      user-select: text;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    /* Input icon */
+    .input-wrapper svg {
+      position: absolute;
+      left: 12px;
+      width: 18px;
+      height: 18px;
+      fill: #8ca0c9;
+      pointer-events: none;
+      transition: fill 0.3s ease;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 14px 10px 40px;
+      font-size: 15px;
+      border: 1.8px solid #ccd9f7;
+      border-radius: 10px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      color: #1a1f3b;
+      font-weight: 500;
+      background: white;
+      caret-color: #ffab00;
+    }
+    input::placeholder {
+      color: #a5b1ce;
+      font-weight: 400;
+    }
+    input:focus {
+      border-color: #ffab00;
+      box-shadow: 0 0 9px #ffab0077;
+      outline: none;
+    }
+    input:focus + svg {
+      fill: #ffab00;
+    }
+
+    /* Save button */
+    button#save {
+      margin-top: 14px;
+      width: 100%;
+      padding: 16px 0;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(90deg, #ffab00, #ffc107);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 7px 16px #ffab0077;
+      transition: background 0.35s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      letter-spacing: 0.06em;
+      user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    button#save:hover,
+    button#save:focus {
+      background: linear-gradient(90deg, #ffc107, #ffd54f);
+      box-shadow: 0 9px 20px #ffc107cc;
+      outline: none;
+      transform: translateY(-2px);
+    }
+    button#save:active {
+      transform: translateY(1px);
+    }
+
+    /* Save icon */
+    #save svg {
+      width: 22px;
+      height: 22px;
+      fill: white;
+      transition: transform 0.3s ease;
+    }
+
+    /* Status */
+    #status {
+      margin-top: 18px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 15px;
+      color: #4caf50;
+      min-height: 28px;
+      user-select: text;
+      letter-spacing: 0.04em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    #status.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #status svg {
+      width: 20px;
+      height: 20px;
+      fill: #4caf50;
+      animation: popCheck 0.5s ease forwards;
+    }
+
+    @keyframes popCheck {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    /* Scrollbar for container */
+    .container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .container::-webkit-scrollbar-track {
+      background: #e9efff;
+      border-radius: 8px;
+    }
+    .container::-webkit-scrollbar-thumb {
+      background: #a3b8ff;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar" role="navigation" aria-label="Navigation buttons">
+    <button id="openMis" aria-label="Open MIS Site">MIS</button>
+    <button id="openMoodle" aria-label="Open Moodle Site">Moodle</button>
+    <button id="openNetwork" aria-label="Open Network Site">Network</button>
+  </div>
+  <div class="container">
+    <h3>Credentials</h3>
+
+    <div class="group" aria-label="MIS Credentials">
+      <label for="misUsername">MIS Username</label>
+      <div class="input-wrapper">
+        <input id="misUsername" type="text" placeholder="Enter MIS username" autocomplete="username" />
+        <!-- user icon -->
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+      </div>
+      <label for="misPassword">MIS Password</label>
+      <div class="input-wrapper">
+        <input id="misPassword" type="password" placeholder="Enter MIS password" autocomplete="current-password" />
+        <!-- lock icon -->
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 17a2 2 0 0 0 2-2v-2a2 2 0 0 0-4 0v2a2 2 0 0 0 2 2zm6-6v-3a6 6 0 0 0-12 0v3H4v11h16V11h-2zm-6-3a4 4 0 0 1 4 4v3H8v-3a4 4 0 0 1 4-4z"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="group" aria-label="Moodle Credentials">
+      <label for="moodleUsername">Moodle Username</label>
+      <div class="input-wrapper">
+        <input id="moodleUsername" type="text" placeholder="Enter Moodle username" autocomplete="username" />
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+      </div>
+      <label for="moodlePassword">Moodle Password</label>
+      <div class="input-wrapper">
+        <input id="moodlePassword" type="password" placeholder="Enter Moodle password" autocomplete="current-password" />
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 17a2 2 0 0 0 2-2v-2a2 2 0 0 0-4 0v2a2 2 0 0 0 2 2zm6-6v-3a6 6 0 0 0-12 0v3H4v11h16V11h-2zm-6-3a4 4 0 0 1 4 4v3H8v-3a4 4 0 0 1 4-4z"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="group" aria-label="Network Credentials">
+      <label for="networkUsername">Network Username</label>
+      <div class="input-wrapper">
+        <input id="networkUsername" type="text" placeholder="Enter Network username" autocomplete="username" />
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+      </div>
+      <label for="networkPassword">Network Password</label>
+      <div class="input-wrapper">
+        <input id="networkPassword" type="password" placeholder="Enter Network password" autocomplete="current-password" />
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 17a2 2 0 0 0 2-2v-2a2 2 0 0 0-4 0v2a2 2 0 0 0 2 2zm6-6v-3a6 6 0 0 0-12 0v3H4v11h16V11h-2zm-6-3a4 4 0 0 1 4 4v3H8v-3a4 4 0 0 1 4-4z"/>
+        </svg>
+      </div>
+    </div>
+
+    <button id="save" aria-label="Save all credentials">
+      Save All
+      <!-- save icon -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M17 3H7a2 2 0 0 0-2 2v14l7-3 7 3V5a2 2 0 0 0-2-2z"/>
+      </svg>
+    </button>
+
+    <div id="status" role="alert" aria-live="polite" aria-atomic="true" aria-relevant="additions">
+      <!-- checkmark icon -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M9 16.17l-3.88-3.88-1.41 1.41L9 19 20.3 7.7l-1.41-1.41z"/>
+      </svg>
+      <span>Saved Successfully!</span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "LNM Auto Login",
+  "version": "1.2",
+  "description": "Auto-fill MIS, Moodle, Network login + quick-launch toolbar",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://erp.lnmiit.ac.in/*",
+    "https://moodle.lnmiit.ac.in/*",
+    "https://172.22.2.6/*"
+  ],
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "default_title": "LNM Auto Login"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://erp.lnmiit.ac.in/mis*",
+        "https://moodle.lnmiit.ac.in/moodle/login*",
+        "https://172.22.2.6/connect/PortalMain*"
+      ],
+      "js": ["content.js"],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ]
+}

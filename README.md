@@ -54,8 +54,8 @@ A modern, minimalist browser extension that **automatically fills in login crede
 
 ## 🧑‍💻 Author
 
-**[Vedic Goyal](https://github.com/VedicGoyal)**  
-Student at **LNMIIT Jaipur**  
+Created by **Vedic Goyal**  
+GitHub: [@VedicGoyal](https://github.com/VedicGoyal)
 
 ---
 
@@ -67,5 +67,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## ⭐️ Show Some Love
 
+**Enjoy seamless access to LNMIIT portals!** 🎉
 If you find this project helpful, give it a ⭐ and share it with your friends and batchmates!
 

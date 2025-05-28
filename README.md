@@ -10,7 +10,7 @@ A modern, minimalist browser extension that **automatically fills in login crede
 🎓 **MIS**, 📘 **Moodle**, and 🌐 **Network** login — all in one click.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/VedicGoyal/LNM-Auto-Login-Extension/main/icon.png" width="500" alt="LNM Auto Login Logo"/>
+  <img src="https://raw.githubusercontent.com/VedicGoyal/LNM-Auto-Login-Extension/main/icons/icon2/icon2-512x512.png" width="500" alt="LNM Auto Login Logo"/>
 </p>
 
 ---

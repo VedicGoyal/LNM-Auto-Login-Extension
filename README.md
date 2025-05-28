@@ -35,7 +35,7 @@ A modern, minimalist browser extension that **automatically fills in login crede
 
 ### 🦊 Firefox
 
-1. Clone or download the extension
+1. [Download ZIP](https://github.com/VedicGoyal/LNM-Auto-Login-Extension/archive/refs/heads/main.zip)
 2. Go to [`about:debugging#/runtime/this-firefox`](about:debugging#/runtime/this-firefox)
 3. Click **Load Temporary Add-on**
 4. Select any file (like `manifest.json`) from the folder

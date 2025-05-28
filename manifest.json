@@ -13,7 +13,12 @@
     "https://172.22.2.6/*"
   ],
   "action": {
-    "default_icon": "icon.png",
+    "default_icon": {
+    "16": "icons/icon1/icon1-16x16.png",
+    "32": "icons/icon1/icon1-32x32.png",
+    "192": "icons/icon1/icon1-192x192.png",
+    "512": "icons/icon1/icon1-512x512.png"
+    },
     "default_popup": "popup.html",
     "default_title": "LNM Auto Login"
   },

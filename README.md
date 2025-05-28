@@ -10,7 +10,7 @@ A modern, minimalist browser extension that **automatically fills in login crede
 🎓 **MIS**, 📘 **Moodle**, and 🌐 **Network** login — all in one click.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/VedicGoyal/LNM-Auto-Login-Extension/main/icon.png" width="600" alt="LNM Auto Login Logo"/>
+  <img src="https://raw.githubusercontent.com/VedicGoyal/LNM-Auto-Login-Extension/main/icon.png" width="500" alt="LNM Auto Login Logo"/>
 </p>
 
 ---
@@ -44,6 +44,8 @@ A modern, minimalist browser extension that **automatically fills in login crede
 4. Select any file (like `manifest.json`) from the folder
 5. The extension will load temporarily (until browser restart)
 
+
+[Having trouble in installation? Checkout the installation video](https://youtu.be/qrsmUDnsFI8)
 ---
 
 ## 🚀 How to use?

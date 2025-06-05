@@ -9,6 +9,8 @@
 A modern, minimalist browser extension that **automatically fills in login credentials** for LNMIIT portals:  
 🎓 **MIS**, 📘 **Moodle**, and 🌐 **Network** login — all in one click.
 
+It's a cross-browser extension that auto-fills login forms for MIS, Moodle, and Network portals of LNMIIT and provides a quick-launch toolbar for easy access. Securely stores credentials using Chrome's sync storage and simplifies daily login routines.
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/VedicGoyal/LNM-Auto-Login-Extension/main/icons/icon2/icon2-512x512.png" width="500" alt="LNM Auto Login Logo"/>
 </p>

@@ -5,6 +5,7 @@
 ![Edge](https://img.shields.io/badge/Edge-Compatible-blue?logo=microsoftedge)
 ![Brave](https://img.shields.io/badge/Brave-Compatible-red?logo=brave)
 ![MIT License](https://img.shields.io/badge/License-MIT-lightgrey?logo=open-source-initiative)
+![GitHub Repo stars](https://img.shields.io/github/stars/VedicGoyal/LNM-Auto-Login-Extension?style=social)
 
 A modern, minimalist browser extension that **automatically fills in login credentials** for LNMIIT portals:  
 🎓 **MIS**, 📘 **Moodle**, and 🌐 **Network** login — all in one click.
